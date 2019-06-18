@@ -10,7 +10,7 @@
 	<!-- load properties file: sport.properties  -->
 	<context:property-placeholder location="classpath:sport.properties"/>
     <!-- Define your beans here -->
-    
+    <!-- cos -->
     <!-- define the dependency -->
     
    <bean id="myFortuneService"
