@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- load properties file: sport.properties  -->
+	<context:property-placeholder location="classpath:sport.properties"/>
+    <!-- Define your beans here -->
+    
+    <!-- define the dependency -->
+    
+   <bean id="myFortuneService"
+     		class="com.apollo.springdemo.HappyFortuneService">
+   </bean>
+   
+   <bean id="randomFortuneService"
+     		class="com.apollo.springdemo.FortuneServiceImpl">
+   </bean>
+    
+    <bean id="myCoach"
+        class="com.apollo.springdemo.TrackCoach">    
+        <constructor-arg ref="myFortuneService"/>     
+    </bean>
+    
+    <bean id="myCricketCoach"
+    	class="com.apollo.springdemo.CricketCoach">
+    	
+    	<!-- set up setter -->
+    	<property name="fortuneService" ref="myFortuneService"/>
+    	
+    	<!-- injecting values  -->
+    	<property name="emailAddress" value="${foo.email}"/>
+    	<property name="team" value="${foo.team}"/>
+    </bean>
+  
+    <bean id="gamerCoach"
+     	class="com.apollo.springdemo.GamerCoach"
+     	scope="prototype">
+    	<!-- <property name="fortune" ref="randomFortuneService" /> -->
+               
+	</bean> 
+	
+  	<!-- <bean id="Coach"
+ 		class="com.apollo.springdemo.TrackCoach">	 		
+ 	</bean> -->
+
+</beans>
+
+
+
+
+
